@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { DragEvent, MouseEvent } from "react";
 
 type BookmarkletInstallerProps = {
   bookmarklet: string;
@@ -9,7 +10,12 @@ type BookmarkletInstallerProps = {
 const bookmarkTitle = "找BV!";
 
 export function BookmarkletInstaller({ bookmarklet }: BookmarkletInstallerProps) {
+  const bookmarkletRef = useRef<HTMLAnchorElement>(null);
   const [copyStatus, setCopyStatus] = useState("如果不能拖拽，就复制后手动新建书签。");
+
+  useEffect(() => {
+    bookmarkletRef.current?.setAttribute("href", bookmarklet);
+  }, [bookmarklet]);
 
   async function copyBookmarklet() {
     try {
@@ -18,6 +24,17 @@ export function BookmarkletInstaller({ bookmarklet }: BookmarkletInstallerProps)
     } catch {
       setCopyStatus("当前浏览器不允许自动复制，请拖拽蓝色按钮安装。");
     }
+  }
+
+  function handleBookmarkletClick(event: MouseEvent<HTMLAnchorElement>) {
+    event.preventDefault();
+    setCopyStatus("请把蓝色按钮拖到书签栏；如果不能拖拽，就点“复制书签脚本”。");
+  }
+
+  function handleBookmarkletDragStart(event: DragEvent<HTMLAnchorElement>) {
+    event.dataTransfer.setData("text/uri-list", bookmarklet);
+    event.dataTransfer.setData("text/plain", bookmarklet);
+    event.dataTransfer.setData("text/html", `<a href="${escapeHtml(bookmarklet)}">${bookmarkTitle}</a>`);
   }
 
   return (
@@ -39,7 +56,14 @@ export function BookmarkletInstaller({ bookmarklet }: BookmarkletInstallerProps)
 
           <div className="install">
             <div className="bookmark-row">
-              <a className="bookmarklet" href={bookmarklet} draggable="true">
+              <a
+                ref={bookmarkletRef}
+                className="bookmarklet"
+                href="#"
+                draggable="true"
+                onClick={handleBookmarkletClick}
+                onDragStart={handleBookmarkletDragStart}
+              >
                 {bookmarkTitle}
               </a>
               <p className="drag-copy">拖到浏览器书签栏完成安装</p>
@@ -90,6 +114,14 @@ export function BookmarkletInstaller({ bookmarklet }: BookmarkletInstallerProps)
       </section>
     </div>
   );
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
 }
 
 function MockVideo() {
