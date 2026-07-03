@@ -104,6 +104,14 @@ export function BookmarkletInstaller({ bookmarklet }: BookmarkletInstallerProps)
           </div>
         </main>
 
+        <div className="repoNote">
+          <p>FindMyBV 是开源小工具，代码和脚本逻辑都可以直接查看。</p>
+          <a href="https://github.com/Leochens/FindMyBV" target="_blank" rel="noreferrer">
+            开源地址：Leochens/FindMyBV
+          </a>
+          <span>觉得有用的话，欢迎顺手点个 Star。</span>
+        </div>
+
         <aside className="panel aside" aria-label="找 BV 脚本使用演示">
           <div className="browser">
             <div className="bar">
@@ -137,12 +145,6 @@ export function BookmarkletInstaller({ bookmarklet }: BookmarkletInstallerProps)
               罐头的AI笔记
             </a>
           </p>
-        </div>
-        <div className="footerLinks">
-          <a href="https://github.com/Leochens/FindMyBV" target="_blank" rel="noreferrer">
-            开源地址：Leochens/FindMyBV
-          </a>
-          <span>觉得有用的话，欢迎顺手点个 Star。</span>
         </div>
       </footer>
     </div>

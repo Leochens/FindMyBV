@@ -310,6 +310,35 @@ h1 {
   font-size: 13px;
 }
 
+.repoNote {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 0 4px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.repoNote p {
+  margin: 0;
+}
+
+.repoNote a {
+  color: var(--cyan-dark);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.repoNote a:hover {
+  text-decoration: underline;
+}
+
+.repoNote span {
+  color: #253047;
+  font-weight: 700;
+}
+
 .footer {
   display: flex;
   flex-wrap: wrap;
@@ -337,24 +366,6 @@ h1 {
 }
 
 .footerMeta a:hover {
-  text-decoration: underline;
-}
-
-.footerLinks {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-  color: #253047;
-  font-weight: 700;
-}
-
-.footerLinks a {
-  color: var(--cyan-dark);
-  text-decoration: none;
-}
-
-.footerLinks a:hover {
   text-decoration: underline;
 }
 
@@ -386,6 +397,11 @@ h1 {
   }
 
   .footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .repoNote {
     align-items: flex-start;
     flex-direction: column;
   }
