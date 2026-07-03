@@ -43,33 +43,43 @@ export function BookmarkletInstaller({ bookmarklet }: BookmarkletInstallerProps)
 
       <section className="hero">
         <main className="panel main">
-          <h1>关联视频找 BV 太麻烦？</h1>
-          <p className="lead">
-            B 站创作中心关联视频时只能输入视频 ID，不能直接搜索自己发过的稿件。这个小脚本会在当前页面列出你的视频，搜到目标后直接复制 BV 号。
-          </p>
-
-          <div className="install">
-            <div className="bookmark-row">
-              <a
-                ref={bookmarkletRef}
-                className="bookmarklet"
-                href="#"
-                draggable="true"
-                title={bookmarkTitle}
-                aria-label={`拖拽安装 ${bookmarkTitle}`}
-                onClick={handleBookmarkletClick}
-              >
-                {bookmarkTitle}
-              </a>
-              <p className="drag-copy">拖到浏览器书签栏完成安装</p>
-            </div>
-            <div className="actions">
-              <button className="copy" type="button" onClick={copyBookmarklet}>
-                复制书签脚本
-              </button>
-              <p className="hint" aria-live="polite">
-                {copyStatus}
+          <div className="heroSplit">
+            <div className="intro">
+              <p className="heroAuthor">
+                来自觉得每次找 BV 很麻烦的
+                <a href="https://space.bilibili.com/351188457" target="_blank" rel="noreferrer">
+                  罐头的AI笔记
+                </a>
               </p>
+              <h1>关联视频找 BV 太麻烦？</h1>
+              <p className="lead">
+                B 站创作中心关联视频时只能输入视频 ID，不能直接搜索自己发过的稿件。这个小脚本会在当前页面列出你的视频，搜到目标后直接复制 BV 号。
+              </p>
+            </div>
+
+            <div className="install">
+              <div className="bookmark-row">
+                <a
+                  ref={bookmarkletRef}
+                  className="bookmarklet"
+                  href="#"
+                  draggable="true"
+                  title={bookmarkTitle}
+                  aria-label={`拖拽安装 ${bookmarkTitle}`}
+                  onClick={handleBookmarkletClick}
+                >
+                  {bookmarkTitle}
+                </a>
+                <p className="drag-copy">拖到浏览器书签栏完成安装</p>
+              </div>
+              <div className="actions">
+                <button className="copy" type="button" onClick={copyBookmarklet}>
+                  复制书签脚本
+                </button>
+                <p className="hint" aria-live="polite">
+                  {copyStatus}
+                </p>
+              </div>
             </div>
           </div>
 
@@ -79,8 +89,13 @@ export function BookmarkletInstaller({ bookmarklet }: BookmarkletInstallerProps)
               <span>把蓝色按钮拖到书签栏。</span>
             </div>
             <div className="step">
-              <strong>2. 打开页面</strong>
-              <span>进入 B 站创作中心需要关联视频的位置。</span>
+              <strong>
+                2.{" "}
+                <a href="https://member.bilibili.com/platform/upload-manager/article" target="_blank" rel="noreferrer">
+                  去创作中心
+                </a>
+              </strong>
+              <span>进入需要关联视频的位置。</span>
             </div>
             <div className="step">
               <strong>3. 搜索复制</strong>
@@ -89,36 +104,47 @@ export function BookmarkletInstaller({ bookmarklet }: BookmarkletInstallerProps)
           </div>
         </main>
 
-        <aside className="panel aside" aria-label="脚本弹窗预览">
+        <aside className="panel aside" aria-label="找 BV 脚本使用演示">
           <div className="browser">
             <div className="bar">
               <span className="dot" />
               <span className="dot" />
               <span className="dot" />
-              <span>member.bilibili.com</span>
+              <span>show-case.mp4</span>
             </div>
           </div>
-          <div className="mock">
-            <div className="searchline">搜索标题或 BV 号</div>
-            <MockVideo />
-            <MockVideo />
-            <MockVideo />
+          <div className="showcase">
+            <video
+              className="showcaseVideo"
+              src="/show-case.mp4"
+              controls
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            />
           </div>
-          <div className="status">刷新完成，已缓存你的视频列表</div>
+          <div className="status">演示：搜索视频并复制 BV 号</div>
         </aside>
       </section>
-    </div>
-  );
-}
 
-function MockVideo() {
-  return (
-    <div className="video">
-      <div className="thumb" />
-      <div>
-        <div className="line" />
-        <div className="line short" />
-      </div>
+      <footer className="footer">
+        <div className="footerMeta">
+          <p>© 2026 FindMyBV. 给 B 站 UP 主用的小脚本，快速找到视频并复制 BV 号。</p>
+          <p>
+            作者：
+            <a href="https://space.bilibili.com/351188457" target="_blank" rel="noreferrer">
+              罐头的AI笔记
+            </a>
+          </p>
+        </div>
+        <div className="footerLinks">
+          <a href="https://github.com/Leochens/FindMyBV" target="_blank" rel="noreferrer">
+            开源地址：Leochens/FindMyBV
+          </a>
+          <span>觉得有用的话，欢迎顺手点个 Star。</span>
+        </div>
+      </footer>
     </div>
   );
 }
