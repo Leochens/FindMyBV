@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { DragEvent, MouseEvent } from "react";
+import type { MouseEvent } from "react";
 
 type BookmarkletInstallerProps = {
   bookmarklet: string;
@@ -31,12 +31,6 @@ export function BookmarkletInstaller({ bookmarklet }: BookmarkletInstallerProps)
     setCopyStatus("请把蓝色按钮拖到书签栏；如果不能拖拽，就点“复制书签脚本”。");
   }
 
-  function handleBookmarkletDragStart(event: DragEvent<HTMLAnchorElement>) {
-    event.dataTransfer.setData("text/uri-list", bookmarklet);
-    event.dataTransfer.setData("text/plain", bookmarklet);
-    event.dataTransfer.setData("text/html", `<a href="${escapeHtml(bookmarklet)}">${bookmarkTitle}</a>`);
-  }
-
   return (
     <div className="page">
       <header className="topbar">
@@ -61,8 +55,9 @@ export function BookmarkletInstaller({ bookmarklet }: BookmarkletInstallerProps)
                 className="bookmarklet"
                 href="#"
                 draggable="true"
+                title={bookmarkTitle}
+                aria-label={`拖拽安装 ${bookmarkTitle}`}
                 onClick={handleBookmarkletClick}
-                onDragStart={handleBookmarkletDragStart}
               >
                 {bookmarkTitle}
               </a>
@@ -114,14 +109,6 @@ export function BookmarkletInstaller({ bookmarklet }: BookmarkletInstallerProps)
       </section>
     </div>
   );
-}
-
-function escapeHtml(value: string) {
-  return value
-    .replaceAll("&", "&amp;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;");
 }
 
 function MockVideo() {
