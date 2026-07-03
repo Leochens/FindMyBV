@@ -35,7 +35,13 @@ npm run dev
 npm run build
 ```
 
-项目不需要服务端密钥，也不需要环境变量。书签脚本在用户点击书签后运行在用户当前打开的 B 站页面里。
+书签脚本在用户点击书签后运行在用户当前打开的 B 站页面里，不需要服务端密钥。
+
+SEO 会默认使用 `https://find-my-bv.vercel.app` 作为 canonical、sitemap 和 Open Graph 基础地址。如果部署后使用了自定义域名，建议在 Vercel 环境变量里设置：
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
+```
 
 ## 项目结构
 
@@ -44,9 +50,16 @@ app/
   BookmarkletInstaller.tsx  # 首页交互组件
   globals.css               # 页面样式
   layout.tsx                # 元信息和根布局
+  og-image/route.tsx        # 社交分享图
   page.tsx                  # 生成 bookmarklet 并渲染首页
+  robots.ts                 # 搜索引擎抓取规则
+  sitemap.ts                # 站点地图
+public/
+  show-case.mp4             # 安装页演示视频
 src/bookmarklet/
   bilibili-video-picker.js  # 注入到 B 站页面的书签脚本源码
+src/
+  site-config.ts            # SEO 和站点基础信息
 scripts/
   verify-bookmarklet.mjs    # 语法和 bookmarklet 包装检查
 ```
