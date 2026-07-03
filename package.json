@@ -1,0 +1,37 @@
+{
+  "name": "find-my-bv",
+  "version": "0.1.0",
+  "private": false,
+  "description": "A bookmarklet installer that helps Bilibili creators search their own videos and copy BV IDs.",
+  "keywords": [
+    "bilibili",
+    "bookmarklet",
+    "bv",
+    "up",
+    "creator-tools"
+  ],
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint . --max-warnings=0",
+    "verify:bookmarklet": "node scripts/verify-bookmarklet.mjs"
+  },
+  "dependencies": {
+    "next": "^15.5.20",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@types/node": "^20.19.4",
+    "@types/react": "^19.0.12",
+    "@types/react-dom": "^19.0.4",
+    "eslint": "^9.30.1",
+    "eslint-config-next": "^15.5.20",
+    "typescript": "^5.8.3"
+  },
+  "overrides": {
+    "postcss": "^8.5.10"
+  }
+}

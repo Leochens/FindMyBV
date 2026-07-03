@@ -1,0 +1,21 @@
+name: Feature request
+description: Suggest an improvement for FindMyBV
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: User need
+      description: What workflow would this improve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should the tool do?
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
